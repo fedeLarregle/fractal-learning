@@ -24,18 +24,21 @@ public class Raster extends JPanel {
 
         for (int row = 0; row < HEIGHT; row++) {
             for (int col = 0; col < WIDTH; col++) {
-                Color color = Mandelbrot.getInstance().find(new Complex(mapToReal(), mapToImaginary()));
+                Color color = Mandelbrot.getInstance().find(new Complex(mapToReal(col), mapToImaginary(row)));
                 writableRaster.setPixel(col, row, new int[]{color.getRed(), color.getGreen(), color.getBlue()});
             }
         }
+
         g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
     }
 
-    private int mapToReal() {
-        return 0;
+    private double mapToReal(int x) {
+        double range = Mandelbrot.MAX_COMPLEX.getX() - Mandelbrot.MIN_COMPLEX.getX();
+        return x * (range / WIDTH) + Mandelbrot.MIN_COMPLEX.getX();
     }
 
-    private int mapToImaginary() {
-        return 0;
+    private double mapToImaginary(int y) {
+        double range = Mandelbrot.MAX_COMPLEX.getY() - Mandelbrot.MIN_COMPLEX.getY();
+        return y * (range / HEIGHT) + Mandelbrot.MIN_COMPLEX.getY();
     }
 }
