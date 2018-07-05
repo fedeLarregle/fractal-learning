@@ -3,33 +3,27 @@ package com.larregle.gui;
 import com.larregle.function.Mandelbrot;
 import com.larregle.math.Complex;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
+import java.io.File;
 
-public class Raster extends JPanel {
+public class Raster {
 
-    private static final int WIDTH = 512;
-    private static final int HEIGHT = 512;
+    private static final int WIDTH = 1920;
+    private static final int HEIGHT = 1080;
 
-    public Raster() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        final BufferedImage image = (BufferedImage) createImage(WIDTH, HEIGHT);
-        WritableRaster writableRaster = image.getRaster();
+    public void generateImage() throws Exception {
+        final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         for (int row = 0; row < HEIGHT; row++) {
             for (int col = 0; col < WIDTH; col++) {
                 Color color = Mandelbrot.getInstance().find(new Complex(mapToReal(col), mapToImaginary(row)));
-                writableRaster.setPixel(col, row, new int[]{color.getRed(), color.getGreen(), color.getBlue()});
+                image.setRGB(col, row, color.getRGB());
             }
         }
 
-        g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
+        ImageIO.write(image, "png", new File("mandelbrot_fractal.png"));
     }
 
     private double mapToReal(int x) {

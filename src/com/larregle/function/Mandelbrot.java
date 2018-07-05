@@ -6,11 +6,12 @@ import java.awt.*;
 
 public class Mandelbrot {
 
-    private static final int MAX_ITERATIONS = 500;
+    private static final int MAX_ITERATIONS = 2000;
     public static final Complex MIN_COMPLEX;
     public static final Complex MAX_COMPLEX;
 
     private static final Mandelbrot instance;
+
 
     static {
         instance = new Mandelbrot();
@@ -30,9 +31,10 @@ public class Mandelbrot {
     public Color find(Complex complex) {
         int i = 0;
         Complex zc = new Complex();
-        while (i < MAX_ITERATIONS && ((zc.getX() * zc.getX()) + (zc.getY() * zc.getY())) < 4.0) {
-            zc.setX( zc.getX() * zc.getX() - zc.getY() * zc.getY() + complex.getX() );
+        while (((zc.getX() * zc.getX()) + (zc.getY() * zc.getY())) < 4.0 && i < MAX_ITERATIONS) {
+            double new_x = zc.getX() * zc.getX() - zc.getY() * zc.getY() + complex.getX();
             zc.setY(2.0 * zc.getX() * zc.getY() + complex.getY());
+            zc.setX(new_x);
             i++;
         }
         return new Color(i % 256, i % 256, i % 256);
