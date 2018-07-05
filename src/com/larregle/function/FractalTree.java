@@ -9,8 +9,8 @@ import java.io.File;
 public class FractalTree {
 
     private static final FractalTree instance;
-    public static final int WIDTH = 768;
-    public static final int HEIGHT = 920;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 500;
 
     static {
         instance = new FractalTree();
