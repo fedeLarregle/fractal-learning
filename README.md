@@ -19,4 +19,4 @@ Here's the output for the Mandelbrot fractal:
 
 Here's the output for the FractalTree:
 
-![fractal-tree](https://user-images.githubusercontent.com/16426370/42302180-faaaf358-7fef-11e8-8d89-111d15ad5065.png)
+![fractal-tree](https://user-images.githubusercontent.com/16426370/42302278-6bc14ee8-7ff0-11e8-980d-e1fd3fee8e96.png)
