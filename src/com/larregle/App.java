@@ -1,9 +1,11 @@
 package com.larregle;
 
-import com.larregle.gui.Raster;
+import com.larregle.function.FractalTree;
+import com.larregle.function.Mandelbrot;
 
 public class App {
     public static void main(String[] args) throws Exception{
-        new Raster().generateImage();
+        Mandelbrot.getInstance().generateFractal();
+        FractalTree.getInstance().generateFractal();
     }
 }
