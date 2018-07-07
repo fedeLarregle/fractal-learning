@@ -33,7 +33,7 @@ public class Mandelbrot {
 
         for (int row = 0; row < HEIGHT; row++) {
             for (int col = 0; col < WIDTH; col++) {
-                Color color = Mandelbrot.getInstance().find(new Complex(mapToReal(col), mapToImaginary(row)));
+                Color color = find(new Complex(mapToReal(col), mapToImaginary(row)));
                 image.setRGB(col, row, color.getRGB());
             }
         }
